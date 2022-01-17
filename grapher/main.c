@@ -1,50 +1,42 @@
 #include <stdio.h>
+#include <math.h>
 
 #define MAXVAL 10
 
-void grapher(int x[], int y[]);
+int grapher(int x, int y);
+void func(int coe, int cons, int deg);
+
+char graph[MAXVAL][MAXVAL];
 
 void main()
 {
 	int coefficient = 1;
-	int constant = 1;
+	int constant = 0;
 	int degree = 1;
 
-	int testx[] = { 1, 2, 3, 4, EOF };
-	int testy[] = { 1, 2, 3, 4, EOF };
-	grapher(testx, testy);
+	func(coefficient, constant, degree);
+
+	int i, j;
+	for (i = MAXVAL-1; i > 0; --i) {
+		for (j = 0; j < MAXVAL; ++j)
+			printf("%c ", graph[j][i]);
+		printf("\n");
+	}
 }
 
-void grapher(int x[], int y[])
+int grapher(int x, int y)
 {
-	// Size of arrays
-	int e;
-	for (e = 0; x[e] != EOF; ++e);
-	int xsize = e;
+	if (y > MAXVAL || y < 0)
+		return 0;
 
-	for (e = 0; y[e] != EOF; ++e);
-	int ysize = e;
+	graph[x][y] = '.';
+	return 1;
+}
 
-	// Error catching
-	if (xsize > MAXVAL-1 || ysize > MAXVAL-1) {
-		printf("Error: too many values; expected %d, got %d and %d", MAXVAL, xsize, ysize);
-		exit();
-	}
-
-	// Plotter
-	int c, i = 0, j = 0, l = 0;
-	for (c = 0; c <= ysize; ++c) 
-	{
-		while (i < MAXVAL - y[l]) {
-			printf("\n");
-			++i;
-		}
-
-		while (j < x[l]) {
-			printf("\t");
-			++j;
-		}
-		printf("+");
-		++l;
+void func(int coe, int cons, int deg)
+{
+	int x;
+ 	for (x = 0; x < MAXVAL; ++x) {
+		grapher(x, coe * pow(x, deg) + cons);
 	}
 }
