@@ -11,7 +11,7 @@ void main()
 	int degree = 1;
 
 	int testx[] = { 1, 2, 3, 4, EOF };
-	int testy[] = { 4, 3, 2, 1, EOF };
+	int testy[] = { 1, 2, 3, 4, EOF };
 	grapher(testx, testy);
 }
 
@@ -41,7 +41,7 @@ void grapher(int x[], int y[])
 		}
 
 		while (j < x[l]) {
-			printf(" ");
+			printf("\t");
 			++j;
 		}
 		printf("+");
