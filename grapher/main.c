@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <math.h>
 
-#define MAXVAL 10
+#define MAXVAL 20
 
-int grapher(int x, int y);
-void func(int coe, int cons, int deg);
+int grapher(double x, double y);
+void func(double coe, double cons, double deg);
 
 char graph[MAXVAL][MAXVAL];
 
 void main()
 {
-	int coefficient = 1;
-	int constant = 0;
-	int degree = 1;
+	double coefficient = 2;
+	double constant = 0;
+	double degree = 1;
 
 	func(coefficient, constant, degree);
 
@@ -24,19 +24,18 @@ void main()
 	}
 }
 
-int grapher(int x, int y)
+int grapher(double x, double y)
 {
 	if (y > MAXVAL || y < 0)
 		return 0;
 
-	graph[x][y] = '.';
+	graph[(int) x][(int) y] = '.';
 	return 1;
 }
 
-void func(int coe, int cons, int deg)
+void func(double coe, double cons, double deg)
 {
 	int x;
- 	for (x = 0; x < MAXVAL; ++x) {
+ 	for (x = 0; x < MAXVAL; ++x)
 		grapher(x, coe * pow(x, deg) + cons);
-	}
 }
